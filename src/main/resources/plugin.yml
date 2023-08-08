@@ -1,0 +1,4 @@
+name: AchievementSymbol
+version: '${project.version}'
+main: com.kamesuta.achievementsymbol.AchievementSymbol
+api-version: 1.20
