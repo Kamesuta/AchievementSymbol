@@ -45,7 +45,7 @@ public class AchievementSymbol extends JavaPlugin implements Listener {
                 config.getString("database.host"),
                 config.getInt("database.port"),
                 config.getString("database.database"),
-                config.getString("database.user"),
+                config.getString("database.username"),
                 config.getString("database.password")
         );
 
@@ -60,6 +60,17 @@ public class AchievementSymbol extends JavaPlugin implements Listener {
 
         // イベントリスナーの登録
         Bukkit.getPluginManager().registerEvents(this, this);
+    }
+
+    @Override
+    public void onDisable() {
+        if (database != null) {
+            try {
+                database.close();
+            } catch (SQLException e) {
+                logger.log(Level.SEVERE, "データベースの切断に失敗しました。", e);
+            }
+        }
     }
 
     @EventHandler
